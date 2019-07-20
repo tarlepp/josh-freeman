@@ -8,11 +8,11 @@ use Traversable;
 
 class Collection
 {
-    private $items;
+    private $configObjects;
 
-    public function __construct(Traversable $resources)
+    public function __construct(Traversable $configObjects)
     {
-        $this->items = $resources;
+        $this->configObjects = $configObjects;
     }
 
     public function get(string $className)
@@ -28,7 +28,7 @@ class Collection
 
     public function getAll(): Traversable
     {
-        return $this->items;
+        return $this->configObjects;
     }
 
     public function has(?string $className = null): bool
@@ -36,7 +36,7 @@ class Collection
         $output = false;
 
         if ($className !== null) {
-            $output = count(array_filter(iterator_to_array($this->items), $this->filter($className))) === 1;
+            $output = count(array_filter(iterator_to_array($this->configObjects), $this->filter($className))) === 1;
         }
 
         return $output;
@@ -46,7 +46,7 @@ class Collection
     {
         return array_values(
             array_filter(
-                iterator_to_array($this->items),
+                iterator_to_array($this->configObjects),
                 $this->filter($className)
             )
         );

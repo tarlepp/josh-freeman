@@ -11,6 +11,10 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+    _instanceof:
+        App\ApiConfigObject\ConfigObjectInterface:
+            tags: [ 'app.config.object']
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
@@ -22,6 +26,17 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\ApiConfigObject\Collection:
+        arguments: [ !tagged app.config.object ]
+
+    App\ApiConfigObject\Bar:
+        arguments:
+            $code: '%env(APP_CODE_BAR)%'
+
+    App\ApiConfigObject\Foo:
+        arguments:
+            $code: '%env(APP_CODE_FOO)%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

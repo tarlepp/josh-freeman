@@ -17,7 +17,11 @@ class ApiController extends AbstractController
     {
         return $this->json([
             'bar code' => $collection->get(Bar::class)->getCode(),
-            // Comment this out and then see profiler
+            /**
+             * Comment this out and then see profiler, and then see `config/services.yaml` and disable lazy loading
+             * of those `ApiConfigObject\Bar|Foo` objects and then you should see that both are initialized, if those
+             * are lazy loaded and line below is commented that `Foo` class is not initialized.
+             */
             //'foo code' => $collection->get(Foo::class)->getCode(),
         ]);
     }

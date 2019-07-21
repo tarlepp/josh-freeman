@@ -17,7 +17,8 @@ class ApiController extends AbstractController
     {
         return $this->json([
             'bar code' => $collection->get(Bar::class)->getCode(),
-            'foo code' => $collection->get(Foo::class)->getCode(),
+            // Comment this out and then see profiler
+            //'foo code' => $collection->get(Foo::class)->getCode(),
         ]);
     }
 }

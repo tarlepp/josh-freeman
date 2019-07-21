@@ -9,6 +9,8 @@ class Bar implements ConfigObjectInterface
     public function __construct(string $code)
     {
         $this->code = $code;
+
+        dump($code);
     }
 
     public function getCode(): string

@@ -10,7 +10,7 @@ class Bar implements ConfigObjectInterface
     {
         $this->code = $code;
 
-        dump($code);
+        dump('class ' . __CLASS__ . ' initialized');
     }
 
     public function getCode(): string
